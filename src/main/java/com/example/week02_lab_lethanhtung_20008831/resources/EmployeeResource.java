@@ -30,7 +30,7 @@ public class EmployeeResource {
     @Produces("application/json")
     @Path("/{id}")
     public Response getEmpById(@PathParam("id") long eid){
-        Optional<Employee> employee = service.get(eid, Employee.class);
+        Optional<Employee> employee = service.getById(eid, Employee.class);
         if (employee.isEmpty())
             return Response.status(Response.Status.NOT_FOUND).build();
         return Response.ok(employee.get()).build();

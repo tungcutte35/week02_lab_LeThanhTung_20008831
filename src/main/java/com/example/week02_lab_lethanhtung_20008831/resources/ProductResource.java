@@ -46,7 +46,7 @@ public class ProductResource {
     @Produces("application/json")
     @Path("/{id}")
     public Response getProductById(@PathParam("id") long id){
-        Optional<Product> product = service.get(id, Product.class);
+        Optional<Product> product = service.getById(id, Product.class);
         if (product.isEmpty())
             return Response.status(Response.Status.NOT_FOUND).build();
         return Response.ok(product.get()).build();

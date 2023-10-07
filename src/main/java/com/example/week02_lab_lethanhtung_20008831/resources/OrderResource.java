@@ -30,7 +30,7 @@ public class OrderResource {
     @Produces("application/json")
     @Path("/{id}")
     public Response getEmpById(@PathParam("id") long eid){
-        return Response.ok(service.get(eid, Order.class)).build();
+        return Response.ok(service.getById(eid, Order.class)).build();
     }
 
     @POST
