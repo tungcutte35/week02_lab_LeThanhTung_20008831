@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<persistence xmlns="https://jakarta.ee/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="https://jakarta.ee/xml/ns/persistence https://jakarta.ee/xml/ns/persistence/persistence_3_0.xsd"
+             version="3.0">
+
+  <persistence-unit name="week2">
+    <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+
+    <class>com.example.week02_lab_lethanhtung_20008831.models.Customer</class>
+    <class>com.example.week02_lab_lethanhtung_20008831.models.Employee</class>
+    <class>com.example.week02_lab_lethanhtung_20008831.models.Product</class>
+    <class>com.example.week02_lab_lethanhtung_20008831.models.ProductPrice</class>
+    <class>com.example.week02_lab_lethanhtung_20008831.models.ProductImage</class>
+    <class>com.example.week02_lab_lethanhtung_20008831.models.Order</class>
+    <class>com.example.week02_lab_lethanhtung_20008831.models.OrderDetail</class>
+
+
+    <exclude-unlisted-classes>false</exclude-unlisted-classes>
+
+
+    <properties>
+      <property name="jakarta.persistence.jdbc.driver"
+                value="org.mariadb.jdbc.Driver"/>
+      <property name="jakarta.persistence.jdbc.url"
+                value="jdbc:mariadb://localhost:3306/week2?createDatabaseIfNotExist=true"/>
+      <property name="jakarta.persistence.jdbc.user" value="root"/>
+      <property name="jakarta.persistence.jdbc.password" value="1"/>
+      <property name="jakarta.persistence.schemageneration.database.action" value="create"/>
+      <!--show query-->
+      <property name="hibernate.show_sql" value="true" />
+      <property name="hibernate.hbm2ddl.auto" value="create-drop" />
+
+    </properties>
+
+  </persistence-unit>
+</persistence>
