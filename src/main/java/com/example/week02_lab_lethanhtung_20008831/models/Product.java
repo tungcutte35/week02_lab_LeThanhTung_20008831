@@ -3,16 +3,20 @@ package com.example.week02_lab_lethanhtung_20008831.models;
 import com.example.week02_lab_lethanhtung_20008831.enums.ProductStatus;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+import java.util.List;
 
 @AllArgsConstructor
 @Setter
 @Getter
 @Entity
 @NamedQueries({
-        @NamedQuery(name = "Product.getProductsActive", query = "SELECT p FROM Product p WHERE p.status = :status"),
-        @NamedQuery(name = "Product.deleteProduct", query = "UPDATE Product p SET p.status = 'IN_ACTIVE' WHERE p.id = :id")
+    @NamedQuery(name = "Product.getProductsActive", query = "SELECT p FROM Product p WHERE p.status = :status"),
+    @NamedQuery(name = "Product.deleteProduct", query = "UPDATE Product p SET p.status = 'IN_ACTIVE' WHERE p.id = :id")
 })
 public class Product {
     @Id
@@ -42,7 +46,25 @@ public class Product {
     @JsonProperty("status")
     private ProductStatus status;
 
-    public Product() {
+    @OneToMany(mappedBy = "product")
+    @PrimaryKeyJoinColumn(name = "product_id")
+    private List<ProductPrice> productPrices;
 
+    @OneToMany(mappedBy = "product")
+    @PrimaryKeyJoinColumn(name = "product_id")
+    private List<ProductImage> productImages;
+
+    @OneToMany(mappedBy = "product")
+    private List<OrderDetail> orderDetails;
+
+    public Product(){}
+
+    public Product(String productName, String description, String unit, String manufacturerName, ProductStatus status) {
+        this.productName = productName;
+        this.description = description;
+        this.unit = unit;
+        this.manufacturerName = manufacturerName;
+        this.status = status;
     }
+
 }

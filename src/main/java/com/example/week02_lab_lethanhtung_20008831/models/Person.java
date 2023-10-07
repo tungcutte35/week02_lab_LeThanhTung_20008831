@@ -1,19 +1,16 @@
 package com.example.week02_lab_lethanhtung_20008831.models;
 
-
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import jakarta.persistence.*;
+import lombok.*;
 
-import javax.persistence.*;
 import java.time.LocalDateTime;
-
 @Getter
 @Setter
 @ToString
 @MappedSuperclass
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public abstract class Person {
     @Id
     @Column(nullable = false, length = 10)
@@ -41,9 +38,6 @@ public abstract class Person {
     @JsonProperty("address")
     private String address;
 
-    public Person() {
-    }
-
     public Person(String fullName, LocalDateTime dob, String email, String phone, String address) {
         this.fullName = fullName;
         this.dob = dob;
@@ -52,7 +46,11 @@ public abstract class Person {
         this.address = address;
     }
 
-    public Person(long id) {
+    public Person(){
+
+    }
+
+    public Person(long id){
         this.Id = id;
     }
 }

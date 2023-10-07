@@ -1,6 +1,5 @@
 package com.example.week02_lab_lethanhtung_20008831.models;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -17,7 +16,6 @@ import java.time.LocalDateTime;
 public class ProductPrice {
     @Id
     @Column(name = "price_date_time", nullable = false, length = 10)
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime id;
     @Column(name = "price", nullable = false)
     private double price;
